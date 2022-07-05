@@ -1,0 +1,35 @@
+# RTL sim options
+sim.inputs.top_module: "MODULE"
+sim.inputs.tb_dut: "DUT"
+sim.inputs.tb_name: "MODULE_tb"
+
+sim.inputs.input_files_meta: "append"
+sim.inputs.input_files:
+  - "sp22-project-ito-nguyen/src/MODULE.v"
+  - "sp22-project-ito-nguyen/src/MODULE_tb.v"
+  - "/home/ff/ee241/install/vclib/vcQueues.v"
+  - "/home/ff/ee241/install/vclib/vcStateElements.v"
+  - "/home/ff/ee241/install/vclib/vcTest.v"
+  - "/home/ff/ee241/install/vclib/vcTestSource.v"
+  - "/home/ff/ee241/install/vclib/vcTestSink.v"
+
+sim.inputs:
+  timescale: "1ns/10ps"
+  options: 
+    - "-notice"
+    - "-line"
+    - "-debug_pp"
+    - "+v2k"
+    - "+incdir+/home/ff/ee241/install/vclib"
+    - "+define+CLOCK_PERIOD=1.0"
+
+  execute_sim: true
+  execution_flags: ["+verbose=1"]
+
+# Specify clock signals
+vlsi.inputs.clocks: [
+  {name: "clk", period: "1.0ns", uncertainty: "0.1ns"}
+]
+
+# Specify .saif file generation mode
+sim.inputs.saif.mode: "full"

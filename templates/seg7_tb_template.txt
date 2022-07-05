@@ -1,0 +1,92 @@
+//  Module: BCD to 7-segment converter testbench
+//  Desc:   Testbench for the 32-bit BCD to 7-segment converter
+//  Author: Hoang Nguyen <hoang_nguyen@berkeley.edu>
+//          Yuki Ito     <itoyuki@berkeley.edu>
+
+`timescale 1ns / 1ps
+
+module MODULE_tb();
+
+    parameter Halfcycle = 5; // half period is 5ns
+    localparam Cycle = 2*Halfcycle;
+
+    reg Clock;
+
+    // Clock signal generation:
+    initial Clock = 0; 
+    always #(Halfcycle) Clock = ~Clock;
+
+    // In/Out ports
+    reg  [3:0] In0, In1, In2, In3, In4, In5, In6, In7, In8, In9; // inputs
+    wire [3:0] Out0, Out1, Out2, Out3, Out4, Out5, Out6, Out7, Out8, Out9; // outputs
+
+    // Instantiate the 32-bit BCD to 7-segment converter module
+    MODULE DUT(
+        .In0(In0),
+        .In1(In1),
+        .In2(In2),
+        .In3(In3),
+        .In4(In4),
+        .In5(In5),
+        .In6(In6),
+        .In7(In7),
+        .In8(In8),
+        .In9(In9),
+        .Out0(Out0),
+        .Out1(Out1),
+        .Out2(Out2),
+        .Out3(Out3),
+        .Out4(Out4),
+        .Out5(Out5),
+        .Out6(Out6),
+        .Out7(Out7),
+        .Out8(Out8),
+        .Out9(Out9)
+    );
+
+    // Decode the testvector
+    initial
+    begin
+        $$vcdpluson;
+
+        In0 = 0;
+        In1 = 0;
+        In2 = 0;
+        In3 = 0;
+        In4 = 0;
+        In5 = 0;
+        In6 = 0;
+        In7 = 0;
+        In8 = 0;
+        In9 = 0;
+        #1;
+
+        $$display("Run testbench");
+        In0 = $in0;
+        In1 = $in1;
+        In2 = $in2;
+        In3 = $in3;
+        In4 = $in4;
+        In5 = $in5;
+        In6 = $in6;
+        In7 = $in7;
+        In8 = $in8;
+        In9 = $in9;
+
+        #1;
+        $$display("In0: %b, Out0: %b", In0, Out0);
+        $$display("In1: %b, Out1: %b", In1, Out1);
+        $$display("In2: %b, Out2: %b", In2, Out2);
+        $$display("In3: %b, Out3: %b", In3, Out3);
+        $$display("In4: %b, Out4: %b", In4, Out4);
+        $$display("In5: %b, Out5: %b", In5, Out5);
+        $$display("In6: %b, Out6: %b", In6, Out6);
+        $$display("In7: %b, Out7: %b", In7, Out7);
+        $$display("In8: %b, Out8: %b", In8, Out8);
+        $$display("In9: %b, Out9: %b", In9, Out9);
+
+        $$vcdplusoff;
+        $$finish();
+    end
+
+endmodule

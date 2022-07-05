@@ -1,0 +1,37 @@
+// Module: ALU
+// Desc:   W-bit 2-input ALU module
+// Inputs: 
+//    A: W-bit value
+//    B: W-bit value
+//    ALUop: Selects the ALU's operation 
+//
+// Outputs:
+//    Out: The chosen function mapped to A and B.
+
+`include "$lib_path"
+
+module MODULE #(parameter W = $width) (
+    input      [W-1:0] A, B,
+    input      [3:0]   ALUop,
+    output reg [W-1:0] Out
+);
+
+always @(*) begin
+    case (ALUop)
+        `ALU_ADD:    Out = A + B;
+        `ALU_SUB:    Out = A - B;
+        `ALU_AND:    Out = A & B;
+        `ALU_OR:     Out = A | B;
+        `ALU_XOR:    Out = A ^ B;
+        `ALU_SLT:    Out = ($$signed(A) < $$signed(B)) ? 1 : 0;
+        `ALU_SLTU:   Out = (A < B) ? 1 : 0;
+        `ALU_SLL:    Out = $$signed(A) << B[4:0];
+        `ALU_SRA:    Out = $$signed(A) >>> B[4:0];
+        `ALU_SRL:    Out = $$signed(A) >> B[4:0];
+        `ALU_COPY_B: Out = B;
+        `ALU_XXX:    Out = 0;
+        default:     Out = $width'bx;
+    endcase
+end
+
+endmodule

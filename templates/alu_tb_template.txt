@@ -1,0 +1,59 @@
+//  Module: ALU testbench
+//  Desc:   Testbench for the N-bit 2-input ALU DUT
+//  Author: Hoang Nguyen <hoang_nguyen@berkeley.edu>
+//          Yuki Ito     <itoyuki@berkeley.edu>
+
+`timescale 1ns / 1ps
+
+`include "$lib_path"
+
+module MODULE_tb();
+
+    parameter width = $width;  // number of bits for ALU input A and B
+    parameter opwidth = 4; // number of bits for ALU opcode input
+
+    parameter Halfcycle = 5; // half period is 5ns
+    localparam Cycle = 2*Halfcycle;
+
+    reg Clock;
+
+    // Clock signal generation:
+    initial Clock = 0; 
+    always #(Halfcycle) Clock = ~Clock;
+
+    // In/Out ports
+    reg  [width-1  :0] A, B;  // ALU inputs
+    reg  [opwidth-1:0] ALUop; // ALU opcode
+    wire [width-1  :0] Out;   // ALU output
+
+    // Instantiate the ALU module
+    MODULE #(.W(width)) DUT(
+        .A(A),
+        .B(B),
+        .ALUop(ALUop),
+        .Out(Out)
+    );
+
+    // Decode the testvector
+    initial
+    begin
+        $$vcdpluson;
+        
+        A = 0;
+        B = 0;
+        ALUop = 0;
+        #1;
+
+        $$display("Run testbench");
+        A = $A;
+        B = $B;
+        ALUop = `$opcode;
+
+        #1;
+        $$display("A: $A, B: $B, ALUop: $opcode, Out: %d", Out);
+
+        $$vcdplusoff;
+        $$finish();
+    end
+
+endmodule

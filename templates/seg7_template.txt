@@ -1,0 +1,160 @@
+// Module: BCD to 7-segment converter
+// Desc:   32-bit BCD to 7-segment converter
+// Inputs: 
+//    InN: 4-bit BCD value
+//
+// Outputs:
+//    OutN: 4-bit 7-segment value
+
+module MODULE (
+    input      [3:0] In0,
+    input      [3:0] In1,
+    input      [3:0] In2,
+    input      [3:0] In3,
+    input      [3:0] In4,
+    input      [3:0] In5,
+    input      [3:0] In6,
+    input      [3:0] In7,
+    input      [3:0] In8,
+    input      [3:0] In9,
+    output reg [3:0] Out0,
+    output reg [3:0] Out1,
+    output reg [3:0] Out2,
+    output reg [3:0] Out3,
+    output reg [3:0] Out4,
+    output reg [3:0] Out5,
+    output reg [3:0] Out6,
+    output reg [3:0] Out7,
+    output reg [3:0] Out8,
+    output reg [3:0] Out9
+);
+
+always @(*) begin
+    case (In0)
+        0 : Out0 = 7'b0000001;
+        1 : Out0 = 7'b1001111;
+        2 : Out0 = 7'b0010010;
+        3 : Out0 = 7'b0000110;
+        4 : Out0 = 7'b1001100;
+        5 : Out0 = 7'b0100100;
+        6 : Out0 = 7'b0100000;
+        7 : Out0 = 7'b0001111;
+        8 : Out0 = 7'b0000000;
+        9 : Out0 = 7'b0000100;
+        default : Out0 = 7'b1111111; 
+    endcase
+
+    case (In1)
+        0 : Out1 = 7'b0000001;
+        1 : Out1 = 7'b1001111;
+        2 : Out1 = 7'b0010010;
+        3 : Out1 = 7'b0000110;
+        4 : Out1 = 7'b1001100;
+        5 : Out1 = 7'b0100100;
+        6 : Out1 = 7'b0100000;
+        7 : Out1 = 7'b0001111;
+        8 : Out1 = 7'b0000000;
+        9 : Out1 = 7'b0000100;
+        default : Out1 = 7'b1111111; 
+    endcase
+
+    case (In2)
+        0 : Out2 = 7'b0000001;
+        1 : Out2 = 7'b1001111;
+        2 : Out2 = 7'b0010010;
+        3 : Out2 = 7'b0000110;
+        4 : Out2 = 7'b1001100;
+        5 : Out2 = 7'b0100100;
+        6 : Out2 = 7'b0100000;
+        7 : Out2 = 7'b0001111;
+        8 : Out2 = 7'b0000000;
+        9 : Out2 = 7'b0000100;
+        default : Out2 = 7'b1111111; 
+    endcase
+
+    case (In3)
+        0 : Out3 = 7'b0000001;
+        1 : Out3 = 7'b1001111;
+        2 : Out3 = 7'b0010010;
+        3 : Out3 = 7'b0000110;
+        4 : Out3 = 7'b1001100;
+        5 : Out3 = 7'b0100100;
+        6 : Out3 = 7'b0100000;
+        7 : Out3 = 7'b0001111;
+        8 : Out3 = 7'b0000000;
+        9 : Out3 = 7'b0000100;
+        default : Out3 = 7'b1111111; 
+    endcase
+
+    case (In4)
+        0 : Out4 = 7'b0000001;
+        1 : Out4 = 7'b1001111;
+        2 : Out4 = 7'b0010010;
+        3 : Out4 = 7'b0000110;
+        4 : Out4 = 7'b1001100;
+        5 : Out4 = 7'b0100100;
+        6 : Out4 = 7'b0100000;
+        7 : Out4 = 7'b0001111;
+        8 : Out4 = 7'b0000000;
+        9 : Out4 = 7'b0000100;
+        default : Out4 = 7'b1111111; 
+    endcase
+
+    case (In5)
+        0 : Out5 = 7'b0000001;
+        1 : Out5 = 7'b1001111;
+        2 : Out5 = 7'b0010010;
+        3 : Out5 = 7'b0000110;
+        4 : Out5 = 7'b1001100;
+        5 : Out5 = 7'b0100100;
+        6 : Out5 = 7'b0100000;
+        7 : Out5 = 7'b0001111;
+        8 : Out5 = 7'b0000000;
+        9 : Out5 = 7'b0000100;
+        default : Out5 = 7'b1111111; 
+    endcase
+
+    case (In6)
+        0 : Out6 = 7'b0000001;
+        1 : Out6 = 7'b1001111;
+        2 : Out6 = 7'b0010010;
+        3 : Out6 = 7'b0000110;
+        4 : Out6 = 7'b1001100;
+        5 : Out6 = 7'b0100100;
+        6 : Out6 = 7'b0100000;
+        7 : Out6 = 7'b0001111;
+        8 : Out6 = 7'b0000000;
+        9 : Out6 = 7'b0000100;
+        default : Out6 = 7'b1111111; 
+    endcase
+
+    case (In7)
+        0 : Out8 = 7'b0000001;
+        1 : Out8 = 7'b1001111;
+        2 : Out8 = 7'b0010010;
+        3 : Out8 = 7'b0000110;
+        4 : Out8 = 7'b1001100;
+        5 : Out8 = 7'b0100100;
+        6 : Out8 = 7'b0100000;
+        7 : Out8 = 7'b0001111;
+        8 : Out8 = 7'b0000000;
+        9 : Out8 = 7'b0000100;
+        default : Out8 = 7'b1111111; 
+    endcase
+
+    case (In9)
+        0 : Out9 = 7'b0000001;
+        1 : Out9 = 7'b1001111;
+        2 : Out9 = 7'b0010010;
+        3 : Out9 = 7'b0000110;
+        4 : Out9 = 7'b1001100;
+        5 : Out9 = 7'b0100100;
+        6 : Out9 = 7'b0100000;
+        7 : Out9 = 7'b0001111;
+        8 : Out9 = 7'b0000000;
+        9 : Out9 = 7'b0000100;
+        default : Out9 = 7'b1111111; 
+    endcase
+end
+
+endmodule

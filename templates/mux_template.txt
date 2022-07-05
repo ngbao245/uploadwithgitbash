@@ -1,0 +1,19 @@
+// Module: MUX
+// Desc:   W-bit N-input MUX module
+// Inputs: 
+//    In: 2D net containing N amount of W-bit values
+//    Sel: Select pin of MUX (log2(N) long)
+//
+// Outputs:
+//    Out: The chosen function from Sel connecting to one of the In
+
+module MODULE #(parameter W = $width) (
+    input      [W-1:0] A,
+    input      [W-1:0] B,
+    input      [1:0] Sel,
+    output     [W-1:0] Out
+);
+
+assign Out = Sel ? A : B;
+
+endmodule

@@ -1,0 +1,59 @@
+//  Module: MUX testbench
+//  Desc:   Testbench for the W-bit N-input MUX DUT
+//  Author: Hoang Nguyen <hoang_nguyen@berkeley.edu>
+//          Yuki Ito     <itoyuki@berkeley.edu>
+
+`timescale 1ns / 1ps
+
+
+module MODULE_tb();
+
+    parameter width = $width;  // number of bits for each input In
+
+    parameter Halfcycle = 5; // half period is 5ns
+    localparam Cycle = 2*Halfcycle;
+
+    reg Clock;
+
+    // Clock Signal generation:
+    initial Clock = 0; 
+    always #(Halfcycle) Clock = ~Clock;
+
+    // Wires to test the MUX (read from the input vector)
+    reg  [width-1  :0] A;  // MUX inputs
+    reg  [width-1  :0] B;
+    reg  [1:0] Sel; // MUX Sel
+    wire [width-1  :0] Out;   // MUX output
+
+    // Instantiate the ALU module
+    MODULE #(.W(width)) DUT(
+        .A(A),
+        .B(B),
+        .Sel(Sel),
+        .Out(Out)
+    );
+
+    // Decode the testvector
+    initial
+    begin
+        $$vcdpluson;
+        
+        A = 0;
+        B = 0;
+        Sel = 0;
+        #1;
+
+        $$display("Run testbench");
+        A = $A;
+        B = $B;
+        Sel = $opcode;
+
+        #1;
+        $$display("A: $A, B: $B, Sel: $opcode, Out: %d", Out);
+
+        $$vcdplusoff;
+        $$finish();
+        
+    end
+
+endmodule

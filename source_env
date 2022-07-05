@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Desc: Automatically source environment
+
+# Author: Hoang Nguyen <hoang_nguyen@berkeley.edu>
+#         Yuki Ito     <itoyuki@berkeley.edu>
+
+# Set user limit
+ulimit -s 65536
+
+# Source Hammer environment
+PROJ_PATH=$PWD
+cd ../..
+source scripts/inst-env.sh
+cd $PROJ_PATH
